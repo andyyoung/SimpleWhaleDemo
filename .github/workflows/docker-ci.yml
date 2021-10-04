@@ -1,4 +1,4 @@
-name: CI to Docker Hub [ay]
+name: CI to Docker Hub ay
 
 on:
   push:
@@ -23,11 +23,11 @@ jobs:
 
       - name: Set up Docker Buildx
         id: buildx
-        users: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v1
 
       - name: Build and push
         id: docker_build
-        users: docker/build-push-action@v1
+        uses: docker/build-push-action@v1
         with:
           context: ./
           file: ./Dockerfile
