@@ -21,6 +21,12 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v1
+        with:
+          images: andyy/simplewhaledemo
+
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
@@ -32,7 +38,6 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: latest
           
       - name: Image digest
         run: echo ${{ steps.docker_build.output.digest }}
